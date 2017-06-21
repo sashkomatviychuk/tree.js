@@ -1,9 +1,11 @@
+const clone = (obj) => JSON.parse(JSON.stringify(obj));
+
 function getChildren(list, id, idKey, parentKey) {
 	const res = [];
 
 	for (let i in list) {
 		if (list[i][parentKey] === id) {
-			const item = list.splice(i, 1)[0];
+			const item = clone(list[i]);
 			item.children = getChildren(list, item[idKey], idKey, parentKey);
 			delete item[parentKey];
 			res.push(item);
@@ -14,7 +16,7 @@ function getChildren(list, id, idKey, parentKey) {
 }
 
 module.exports = function makeTree(_list, idKey = '_id', parentKey = '_parent') {
-	const list = JSON.parse(JSON.stringify(_list));
+	const list = clone(_list);
 	const roots = [];
 	let i = 0;
 
