@@ -5,6 +5,7 @@ function getChildren(list, id, idKey, parentKey) {
 		if (list[i][parentKey] === id) {
 			let item = list[i];
 			item.children = getChildren(list, item[idKey], idKey, parentKey);
+			delete item[parentKey];
 			res.push(item);
 		}
 	}
@@ -18,7 +19,9 @@ module.exports = function makeTree(list, idKey = '_id', parentKey = '_parent') {
 
 	while (i < list.length) {
 		if (!list[i][parentKey]) {
-			roots.push(list.splice(i, 1)[0]);
+			const item = list.splice(i, 1)[0];
+			delete item[parentKey];
+			roots.push(item);
 		} else {
 			++i;
 		}
