@@ -3,7 +3,7 @@ function getChildren(list, id, idKey, parentKey) {
 
 	for (let i in list) {
 		if (list[i][parentKey] === id) {
-			let item = list[i];
+			const item = list.splice(i, 1)[0];
 			item.children = getChildren(list, item[idKey], idKey, parentKey);
 			delete item[parentKey];
 			res.push(item);
@@ -13,7 +13,8 @@ function getChildren(list, id, idKey, parentKey) {
 	return res;
 }
 
-module.exports = function makeTree(list, idKey = '_id', parentKey = '_parent') {
+module.exports = function makeTree(_list, idKey = '_id', parentKey = '_parent') {
+	const list = JSON.parse(JSON.stringify(_list));
 	const roots = [];
 	let i = 0;
 

@@ -1,6 +1,5 @@
 const makeTree = require('./tree');
-const tr = makeTree(
-	[
+const list = [
 		{
 			_id: 1,
 			_parent: null,
@@ -21,7 +20,8 @@ const tr = makeTree(
 			_parent: null,
 			text: '123 4',
 		},
-	]
-)
+	];
 
-console.log(JSON.stringify(tr, null, 2));
+const tree = makeTree(list)
+
+console.log(JSON.stringify(tree, null, 2));
