@@ -30,6 +30,8 @@ module.exports = function makeTree(_list, idKey = '_id', parentKey = '_parent') 
 		}
 	}
 
+	if (!list.length) return roots;
+
 	const rootsLength = roots.length;
 
 	for (i = 0; i < rootsLength; ++i) {
