@@ -1,4 +1,5 @@
 const makeTree = require('./tree');
+
 const list = [
 	{
 		_id: 1,
@@ -20,8 +21,39 @@ const list = [
 		_parent: null,
 		text: '123 4',
 	},
+	{
+		_id: 5,
+		_parent: 4,
+		text: '123 4',
+	},
+	{
+		_id: 6,
+		_parent: 5,
+		text: '123 4',
+	},
+	{
+		_id: 7,
+		_parent: 6,
+		text: '123 4',
+	},
+	{
+		_id: 8,
+		_parent: 7,
+		text: '123 4',
+	},
+	{
+		_id: 9,
+		_parent: 7,
+		text: '123 4',
+	},
+	{
+		_id: 10,
+		_parent: 7,
+		text: '123 4',
+	},
 ];
 
+console.time('tree built in');
 const tree = makeTree(list)
-
-console.log(JSON.stringify(tree, null, 2));
+// console.log(JSON.stringify(tree, null, 2));
+console.timeEnd('tree built in');
