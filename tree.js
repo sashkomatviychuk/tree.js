@@ -9,8 +9,7 @@ function getChildren(list, id, idKey, parentKey, isRoot) {
 			continue;
 		}
 
-		if (!item[parentKey] && !isRoot) continue;
-		if (item[parentKey] && item[parentKey] !== id) continue;
+		if (item[parentKey] && item[parentKey] !== id || !item[parentKey] && !isRoot) continue;
 
 		if (item[idKey]) {
 			item.children = getChildren(list, item[idKey], idKey, parentKey, false);
