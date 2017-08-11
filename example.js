@@ -55,5 +55,6 @@ const list = [
 
 console.time('tree built in');
 const tree = makeTree(list)
+// const tree = makeTree([null, '', false, undefined, [], NaN])
 // console.log(JSON.stringify(tree, null, 2));
 console.timeEnd('tree built in');

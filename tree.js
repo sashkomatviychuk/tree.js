@@ -4,6 +4,8 @@ function getChildren(list, id, idKey, parentKey, isRoot) {
 	for (let i in list) {
 		const item = list[i];
 
+		if (!item || '[object Object]' !== item.toString()) continue;
+
 		if (isRoot && !item[idKey] && !item[parentKey]) {
 			res.push(item);
 			continue;
