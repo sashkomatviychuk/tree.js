@@ -1,0 +1,24 @@
+{
+  "name": "list-to-tree",
+  "version": "1.0.0",
+  "description": "Convert list to tree structure",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sashkomatviychuk/tree.js.git"
+  },
+  "keywords": [
+    "tree",
+    "list-to-tree"
+  ],
+  "author": "Oleksandr Matviichuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sashkomatviychuk/tree.js/issues"
+  },
+  "homepage": "https://github.com/sashkomatviychuk/tree.js#readme"
+}

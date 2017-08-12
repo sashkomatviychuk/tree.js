@@ -1,4 +1,4 @@
-const makeTree = require('./tree');
+const makeTree = require('./index');
 
 const list = [
 	{
