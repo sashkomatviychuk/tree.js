@@ -1,10 +1,10 @@
-function getChildren(list, id, idKey, parentKey, isRoot) {
+function getChildren(list, id, idGetter, parentGetter, isRoot) {
 	const res = [];
 
 	for (let i in list) {
 		const item = list[i];
-		const itemId = item[idKey];
-		const itemParent = item[parentKey];
+		const itemId = idGetter(item);
+		const itemParent = parentGetter(item);
 
 		if (!item || '[object Object]' !== item.toString()) continue;
 
@@ -16,7 +16,7 @@ function getChildren(list, id, idKey, parentKey, isRoot) {
 		if (itemParent && itemParent !== id || !itemParent && !isRoot) continue;
 
 		if (itemId) {
-			item.children = getChildren(list, itemId, idKey, parentKey, false);
+			item.children = getChildren(list, itemId, idGetter, parentGetter, false);
 		}
 
 		res.push(item);
@@ -25,14 +25,9 @@ function getChildren(list, id, idKey, parentKey, isRoot) {
 	return res;
 }
 
-module.exports = (_list, idKey = '_id', parentKey = '_parent') => {
-	if (typeof idKey === 'string' && typeof parentKey === 'string') {
-		if (Array.isArray(_list)) {
-			return getChildren(JSON.parse(JSON.stringify(_list)), false, idKey, parentKey, true);
-		}
-
+module.exports = (_list, idGetter, parentGetter) => {
+	if (!Array.isArray(_list)) {
 		throw new Error('First argument must be an array');
 	}
-
-	throw new Error('Id key and parent key must be a string');
+	return getChildren(JSON.parse(JSON.stringify(_list)), false, idGetter, parentGetter, true);
 };
