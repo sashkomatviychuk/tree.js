@@ -6,10 +6,6 @@ const listToTree = require('./index');
 describe('List to tree tests', () => {
 	it('listToTree should be a function', () => assert(listToTree instanceof Function));
 
-	it('Should throw an error, if second arg is not a string', () => {
-		expect(listToTree.bind(null, [], null)).to.throw(Error);
-	});
-
 	it('Should throw an error, if first arg is not an array', () => {
 		expect(listToTree).to.throw(Error);
 	});
@@ -46,7 +42,7 @@ describe('List to tree tests', () => {
 			children: [],
 		}]
 
-		const tree = listToTree(list);
+		const tree = listToTree(list, item => item._id, item => item._parent);
 
 		expect(tree).to.deep.equal(expectedResult);
 	});
@@ -63,7 +59,7 @@ describe('List to tree tests', () => {
 			prop: '13sdf',
 		}];
 
-		const tree = listToTree(list);
+		const tree = listToTree(list, item => item._id, item => item._parent);
 
 		expect(tree).to.deep.equal([]);
 	});
@@ -86,7 +82,7 @@ describe('List to tree tests', () => {
 			prop: '13sdf',
 		}];
 
-		const tree = listToTree(list);
+		const tree = listToTree(list, item => item._id, item => item._parent);
 
 		expect(tree).to.deep.equal(expectedResult);
 	});
